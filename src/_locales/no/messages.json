@@ -1,0 +1,10 @@
+{
+    "appName": {
+        "message": "Møre-Nytt store bilete",
+        "description": "Møre-Nytt store bilete"
+    },
+    "appDesc": {
+        "message": "Tilgjengeleggjer åpning av bilete i stor visning",
+        "description": "Tilgjengeleggjer åpning av bilete i stor visning"
+    }
+}
