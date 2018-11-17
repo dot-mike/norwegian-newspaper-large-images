@@ -2,6 +2,10 @@
 
 Replaces the normal size images with larger ones. Allows you to click to zoom.
 
+Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg). See example below:
+
+![Example usage](example.gif)
+
 ## License
 
 The software in this repo is released under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), also found in the `LICENSE` file.
