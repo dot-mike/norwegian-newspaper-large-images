@@ -1,10 +1,14 @@
 # Møre-Nytt large images
 
-Replaces the normal size images with larger ones. Allows you to click to zoom.
+Replaces the normal size images with larger ones. Allows you to click to zoom. Control/Command-click opens in new window.
 
 Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg). See example below:
 
 ![Example usage](example.gif)
+
+As this functionality is similar across [Polaris Media](http://www.polarismedia.no) it should be a small task to extend it to their other newspapers.
+
+Functionality tested on 2018-11-20.
 
 ## License
 

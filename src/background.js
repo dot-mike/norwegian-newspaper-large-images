@@ -4,7 +4,9 @@ chrome.webRequest.onBeforeRequest.addListener(
             redirectUrl: chrome.runtime.getURL('includes/Imager.js')
         };
     }, {
-        urls: ["https://static.polarismedia.no/resources/min-js/plugins/imager.js?1016"]
+        urls: [
+            "https://static.polarismedia.no/resources/min-js/plugins/imager.js?1016"
+        ]
     },
     ["blocking"]
 );

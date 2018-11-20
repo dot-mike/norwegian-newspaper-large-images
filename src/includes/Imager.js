@@ -48,7 +48,6 @@ define(["lib/Imager"], function (a) {
                                 if (e.target.tagName === 'IMG')
                                     e.preventDefault();
                             });
-
                         }
                     }
                 })
