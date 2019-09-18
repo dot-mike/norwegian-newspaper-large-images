@@ -1,14 +1,54 @@
-# Møre-Nytt large images
+# Polaris media large images
 
-Replaces the normal size images with larger ones. Allows you to click to zoom. Control/Command-click opens in new window.
+Adds an element in your context menu to "Open large image", when right clicking an image on a Polaris Media newspaper website. Covered papers ([see Polaris Medias own list](http://www.polarismedia.no/vare-selskaper/)):
 
-Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg). See example below:
+* Adresseavisen
+* Avisa Sør-Trøndelag
+* Bladet
+* Brønnøysunds avis
+* Fosna-Folket
+* Hitra-Frøya
+* Innherred
+* Opdalingen
+* Trønderbladet
+* Altaposten
+* Andøyposten
+* Folkebladet
+* Framtid i Nord
+* Harstad Tidende
+* iTromsø
+* Vesteraalens Avis
+* Vesterålen Online
+* Åndalsnes Avis
+* Driva
+* Dølen
+* Fjordabladet
+* Fjordenes Tidende
+* Fjordingen
+* Fjuken
+* Møre-Nytt
+* Romsdals Budstikke
+* Sunnmøringen
+* Sunnmørsposten
+* Vestlandsnytt
+* Vigga
+* Vikebladet
 
-![Example usage](example.gif)
 
-As this functionality is similar across [Polaris Media](http://www.polarismedia.no) it should be a small task to extend it to their other newspapers.
 
-Functionality tested on 2018-11-20.
+Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg) and [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/polaris-media-large-images/).
+
+Functionality tested on 2019-09-18.
+
+## Changelog
+
+### 1.5
+
+Extension now gives a context menu option upon right clicking images on Polaris Media websites.
+
+### < 1.5
+
+These versions injected content scripts, but as Polar Media kept changing up their DOM/scripts it didn't work well for long.
 
 ## License
 
@@ -17,7 +57,3 @@ The software in this repo is released under [CC-BY-SA 4.0](https://creativecommo
 ## Credits
 
 The logo icon is the "tooltip-image" icon from [Material Design Icons](https://materialdesignicons.com/).
-
-Includes [Zoom.js](https://github.com/fat/zoom.js) and its [jQuery](https://jquery.com/) and [Bootstrap](https://github.com/twbs/bootstrap) dependencies.
-
-Replaces [Polaris Medias Imager initializer](https://static.polarismedia.no/resources/min-js/plugins/imager.js?1016) with an internal one that has a `onImagesReplaced` function.

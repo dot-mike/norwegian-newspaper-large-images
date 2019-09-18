@@ -1,10 +1,14 @@
 {
     "appName": {
-        "message": "Møre-Nytt large images",
-        "description": "Møre-Nytt large images"
+        "message": "Polaris Media large images",
+        "description": "Polaris Media large images"
     },
     "appDesc": {
-        "message": "Makes opening of images available in large format",
-        "description": "Makes opening of images available in large format"
+        "message": "Makes opening of Polaris Media newspaper images available in large format",
+        "description": "Makes opening of Polaris Media newspaper images available in large format"
+    },
+    "openLarge": {
+        "message": "Open large image",
+        "description": "Choose to open image in large format"
     }
 }

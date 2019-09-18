@@ -1,2 +1,2 @@
 import shutil
-shutil.make_archive('morenytt-large-images', 'zip', 'src')
+shutil.make_archive('polaris-media-large-images', 'zip', 'src')
