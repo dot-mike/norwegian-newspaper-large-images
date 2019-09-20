@@ -2,58 +2,31 @@
 
 Adds an element in your context menu to "Open large image", when right clicking an image on many Norwegian newspaper website.
 
-Covered Polaris Media newspapers ([see Polaris Medias own list](http://www.polarismedia.no/vare-selskaper/)):
+Covered media groups:
 
-- Adresseavisen
-- Avisa Sør-Trøndelag
-- Bladet
-- Brønnøysunds avis
-- Fosna-Folket
-- Hitra-Frøya
-- Innherred
-- Opdalingen
-- Trønderbladet
-- Altaposten
-- Andøyposten
-- Folkebladet
-- Framtid i Nord
-- Harstad Tidende
-- iTromsø
-- Vesteraalens Avis
-- Vesterålen Online
-- Åndalsnes Avis
-- Driva
-- Dølen
-- Fjordabladet
-- Fjordenes Tidende
-- Fjordingen
-- Fjuken
-- Møre-Nytt
-- Romsdals Budstikke
-- Sunnmøringen
-- Sunnmørsposten
-- Vestlandsnytt
-- Vigga
-- Vikebladet
+- [Aller Media](https://www.aller.no/node/2323)
+- [Amedia](http://www.amedia.no/virksomheten/vare-mediehus/)
+- [Polaris Media](http://www.polarismedia.no/vare-selskaper/)
+- [Schibsted](https://schibsted.com/)
+- [Teknisk Ukeblad Media](https://www.tumedia.no/)
 
-Other Norwegian newspapers:
+Newspapers known to NOT be covered:
 
-- Digi
-- Teknisk Ukeblad
-- Inside Telecom
-- Veier24
-- Dagbladet
-- Aftenposten
+- VG
+- E24
+- ITavisen
+- Møre
+- Svalbardposten
 
 Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg) and [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/polaris-media-large-images/).
 
-Functionality tested on 2019-09-19.
+Functionality tested on 2019-09-20.
 
 ## Changelog
 
 ### 1.6
 
-Extended support to some other Norwegian newspapers.
+Extended support to a lot of Norwegian newspapers.
 
 ### 1.5
 
