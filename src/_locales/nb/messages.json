@@ -1,0 +1,14 @@
+{
+    "appName": {
+        "message": "Norwegian newspaper large images",
+        "description": "Norsk avis store bilder"
+    },
+    "appDesc": {
+        "message": "Gjør det mulig å åpne norske avisbilder i stort format",
+        "description": "Gjør det mulig å åpne norske avisbilder i stort format"
+    },
+    "openLarge": {
+        "message": "Åpne stort bilde",
+        "description": "Velg for å åpne bildet i stort format"
+    }
+}

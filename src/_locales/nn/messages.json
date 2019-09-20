@@ -1,0 +1,14 @@
+{
+    "appName": {
+        "message": "Norwegian newspaper large images",
+        "description": "Norsk avis store bilete"
+    },
+    "appDesc": {
+        "message": "Gjer det mogleg å åpne norske avisbilete i stort format",
+        "description": "Gjer det mogleg å åpne norske avisbilete i stort format"
+    },
+    "openLarge": {
+        "message": "Åpne stort bilete",
+        "description": "Velg for å åpne bildet i stort format"
+    }
+}

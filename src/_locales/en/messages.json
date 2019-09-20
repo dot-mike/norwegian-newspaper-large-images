@@ -1,11 +1,11 @@
 {
     "appName": {
-        "message": "Polaris Media large images",
-        "description": "Polaris Media large images"
+        "message": "Norwegian newspaper large images",
+        "description": "Norwegian newspaper large images"
     },
     "appDesc": {
-        "message": "Makes opening of Polaris Media newspaper images available in large format",
-        "description": "Makes opening of Polaris Media newspaper images available in large format"
+        "message": "Makes opening of Norwegian newspaper images available in large format",
+        "description": "Makes opening of Norwegian newspaper images available in large format"
     },
     "openLarge": {
         "message": "Open large image",
