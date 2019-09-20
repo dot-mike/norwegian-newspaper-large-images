@@ -43,6 +43,7 @@ Other Norwegian newspapers:
 - Inside Telecom
 - Veier24
 - Dagbladet
+- Aftenposten
 
 Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg) and [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/polaris-media-large-images/).
 

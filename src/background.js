@@ -9,6 +9,13 @@ function openLargeImage(info, tab, func) {
         openUrlInTab(srcUrl, tab)
 }
 
+// Aftenposten handler
+function getLargeApImageUrl(url) {
+    const pattern = /\/images\/([a-z0-9\-]+)\?[0-9a-zA-Z\.&=]+$/g;
+    const func = (x, p1) => '/images/' + p1;
+    return performRegExp(url, pattern, func);
+}
+
 // Dagbladet handler
 function getLargeDbImageUrl(url) {
     const pattern = /\/([0-9]+)\.jpg\?[0-9a-zA-Z\.&=]+$/g;
@@ -111,5 +118,15 @@ chrome.contextMenus.create({
     onclick: (info, tab) => openLargeImage(info, tab, getLargeDbImageUrl),
     documentUrlPatterns: [
         "*://*.dagbladet.no/*"
+    ]
+});
+
+// Aftenposten
+chrome.contextMenus.create({
+    title: chrome.i18n.getMessage("openLarge"),
+    contexts: ["image"],
+    onclick: (info, tab) => openLargeImage(info, tab, getLargeApImageUrl),
+    documentUrlPatterns: [
+        "*://*.aftenposten.no/*"
     ]
 });
