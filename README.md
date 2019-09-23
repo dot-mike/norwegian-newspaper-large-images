@@ -18,11 +18,15 @@ Newspapers known to NOT be covered:
 - Møre
 - Svalbardposten
 
-Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg) and [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/polaris-media-large-images/).
+Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg) and [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/nn-large-images/).
 
 Functionality tested on 2019-09-20.
 
 ## Changelog
+
+### 1.6.1
+
+Fixed broken URL patterns for Amedia newspapers.
 
 ### 1.6
 
