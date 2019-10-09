@@ -2,27 +2,33 @@
 
 Adds an element in your context menu to "Open large image", when right clicking an image on many Norwegian newspaper website.
 
-Covered media groups:
+Covered media groups or publishing platforms:
 
-- [Aller Media](https://www.aller.no/node/2323)
+- [Aller Media (Labrador)](https://www.aller.no/node/2323)
 - [Amedia](http://www.amedia.no/virksomheten/vare-mediehus/)
 - [Polaris Media](http://www.polarismedia.no/vare-selskaper/)
 - [Schibsted](https://schibsted.com/)
-- [Teknisk Ukeblad Media](https://www.tumedia.no/)
+- [Teknisk Ukeblad Media (Neo)](https://www.tumedia.no/)
+- [Newsflow](https://www.newsflow.no/)
 
 Newspapers known to NOT be covered:
 
 - VG
 - E24
 - ITavisen
-- Møre
-- Svalbardposten
+- Political newspapers
 
 Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg) and [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/nn-large-images/).
 
 Functionality tested on 2019-09-20.
 
 ## Changelog
+
+### 1.7
+
+Added Newsflow support, but unknown exactly what domains to cover.
+Added more domains to Aller Media (Labrador).
+Improved the pattern used on Teknisk Ukeblad Media (Neo) domains.
 
 ### 1.6.1
 

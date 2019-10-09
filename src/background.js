@@ -33,8 +33,8 @@ function getLargeAmImageUrl(url) {
 
 // Teknisk Ukeblad Media handler
 function getLargeTumImageUrl(url) {
-    const pattern = /\/(.+)\.[0-9]+x[0-9]+c\.jpg$/g;
-    const func = (x, p1) => '/' + p1 + '.jpg';
+    const pattern = /\/(.+)\.[0-9]+x[0-9]+c?\.(jpg|png)$/g;
+    const func = (x, p1, p2) => '/' + p1 + '.' + p2;
     return performRegExp(url, pattern, func);
 }
 
@@ -42,6 +42,13 @@ function getLargeTumImageUrl(url) {
 function getLargePmImageUrl(url) {
     const pattern = /\/w[0-9]+(-\w+)*\//g;
     const func = () => '/w1980-default/';
+    return performRegExp(url, pattern, func);
+}
+
+// Newsflow handler
+function getLargeNfImageUrl(url) {
+    const pattern = /(bilder\/nyheter\/).+(\/.+\.jpg)/g;
+    const func = (x, p1, p2) => p1 + 'nyhetbig' + p2;
     return performRegExp(url, pattern, func);
 }
 
@@ -62,7 +69,7 @@ function openUrlInTab(url, openerTab) {
     });
 }
 
-// Polaris Media
+// Polaris Media | ?
 chrome.contextMenus.create({
     title: chrome.i18n.getMessage("openLarge"),
     contexts: ["image"],
@@ -105,7 +112,7 @@ chrome.contextMenus.create({
     ]
 });
 
-// Teknisk Ukeblad Media
+// Teknisk Ukeblad Media | Neo
 chrome.contextMenus.create({
     title: chrome.i18n.getMessage("openLarge"),
     contexts: ["image"],
@@ -115,11 +122,12 @@ chrome.contextMenus.create({
         "*://*.digi.no/*",
         "*://*.insidetelecom.no/*",
         "*://*.veier24.no/*",
-        "*://*.tek.no/*", // Aquired by VG and might break over time
+        "*://*.tek.no/*", // Aquired by VG, but using Neo
+        "*://*.medier24.no/*" // Not TUM, but using Neo
     ]
 });
 
-// Aller Media
+// Aller Media | Labrador
 chrome.contextMenus.create({
     title: chrome.i18n.getMessage("openLarge"),
     contexts: ["image"],
@@ -128,10 +136,28 @@ chrome.contextMenus.create({
         "*://*.dagbladet.no/*",
         "*://*.kode24.no/*",
         "*://*.dinside.no/*",
+        "*://*.klikk.no/*",
+        "*://*.tv2.no/*",
+        "*://*.tvsporten.no/*",
+        "*://*.seher.no/*",
+        "*://*.sol.no/*",
+        "*://*.kk.no/*",
+        "*://*.se.no/*",
+        "*://*.topp.no/*",
+        "*://*.khrono.no/*",
+        "*://*.journalisten.no/*",
+        "*://*.forskning.no/*",
+        "*://*.arbeidsnytt.no/*",
+        "*://*.tungt.no/*",
+        "*://*.side2.no/*",
+        "*://*.side3.no/*",
+        "*://*.mammanett.no/*",
+        "*://*.vi.no/*",
+        "*://*.lommelegen.no/*",
     ]
 });
 
-// Schibsted
+// Schibsted | ?
 chrome.contextMenus.create({
     title: chrome.i18n.getMessage("openLarge"),
     contexts: ["image"],
@@ -144,7 +170,7 @@ chrome.contextMenus.create({
     ]
 });
 
-// Amedia
+// Amedia | ?
 chrome.contextMenus.create({
     title: chrome.i18n.getMessage("openLarge"),
     contexts: ["image"],
@@ -222,5 +248,26 @@ chrome.contextMenus.create({
         "*://*.op.no/*",
         "*://*.ostlendingen.no/*",
         "*://*.aasavis.no/*",
+    ]
+});
+
+// ? | Newsflow
+chrome.contextMenus.create({
+    title: chrome.i18n.getMessage("openLarge"),
+    contexts: ["image"],
+    onclick: (info, tab) => openLargeImage(info, tab, getLargeNfImageUrl),
+    documentUrlPatterns: [
+        "*://*.mre.no/*",
+        "*://*.svalbardposten.no/*",
+        "*://*.akersposten.no/*",
+        "*://*.sageneavis.no/*",
+        "*://*.midsundingen.no/*",
+        "*://*.groruddalen.no/*",
+        "*://*.nab.no/*",
+        "*://*.idag.no/*",
+        "*://*.fritanke.no/*",
+        "*://*.nye-troms.no/*",
+        "*://*.sagat.no/*",
+        "*://*.nordrenett.no/*",
     ]
 });
