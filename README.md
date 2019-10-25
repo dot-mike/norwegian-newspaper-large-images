@@ -2,6 +2,8 @@
 
 Adds an element in your context menu to "Open large image", when right clicking an image on many Norwegian newspaper website.
 
+![Example usage](example.gif)
+
 Covered media groups or publishing platforms:
 
 - [Aller Media (Labrador)](https://www.aller.no/node/2323)
@@ -20,7 +22,7 @@ Newspapers known to NOT be covered:
 
 Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg) and [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/nn-large-images/).
 
-Functionality tested on 2019-09-20.
+Functionality tested on 2019-10-25.
 
 ## Changelog
 
