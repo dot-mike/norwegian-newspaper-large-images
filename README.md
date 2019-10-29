@@ -17,14 +17,17 @@ Newspapers known to NOT be covered:
 
 - VG
 - E24
-- ITavisen
 - Political newspapers
 
 Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg) and [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/nn-large-images/).
 
-Functionality tested on 2019-10-25.
+Functionality tested on 2019-10-29.
 
 ## Changelog
+
+### 1.7.1
+
+Added ITavisen support.
 
 ### 1.7
 

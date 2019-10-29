@@ -52,6 +52,13 @@ function getLargeNfImageUrl(url) {
     return performRegExp(url, pattern, func);
 }
 
+// Generic W/H handler (example: "-640x480.jpg")
+function getLargeWHImageUrl(url) {
+    const pattern = /\/(.+)\-[0-9]+x[0-9]+\.(jpg|png)$/g;
+    const func = (x, p1, p2) => '/' + p1 + '.' + p2;
+    return performRegExp(url, pattern, func);
+}
+
 function performRegExp(value, pattern, func) {
     if (RegExp(pattern).test(value)) {
         return value.replace(pattern, func);
@@ -269,5 +276,15 @@ chrome.contextMenus.create({
         "*://*.nye-troms.no/*",
         "*://*.sagat.no/*",
         "*://*.nordrenett.no/*",
+    ]
+});
+
+// ITAvisen | Wordpress
+chrome.contextMenus.create({
+    title: chrome.i18n.getMessage("openLarge"),
+    contexts: ["image"],
+    onclick: (info, tab) => openLargeImage(info, tab, getLargeWHImageUrl),
+    documentUrlPatterns: [
+        "*://*.itavisen.no/*",
     ]
 });
