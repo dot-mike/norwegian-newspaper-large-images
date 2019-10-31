@@ -1,0 +1,27 @@
+{
+  "name": "norwegian-newspaper-large-images",
+  "version": "1.0.0",
+  "description": "Packager and deployer for Norwegian Newspaper Large Images",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ondkloss/norwegian-newspaper-large-images.git"
+  },
+  "private": true,
+  "author": "Halvor Holsten Strand",
+  "license": "CC-BY-SA-4.0",
+  "bugs": {
+    "url": "https://github.com/Ondkloss/norwegian-newspaper-large-images/issues"
+  },
+  "homepage": "https://github.com/Ondkloss/norwegian-newspaper-large-images#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "archiver": "^3.1.1",
+    "chrome-webstore-upload": "^0.2.2",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.6.0"
+  }
+}
