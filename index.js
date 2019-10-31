@@ -1,26 +1,32 @@
 const fs = require("fs");
 const archiver = require("archiver");
 
+require('dotenv').config();
 const ZIP_FILENAME = "norwegian-newspaper-large-images.zip";
 
 async function zipDirectory(source, out) {
   const archive = archiver("zip", { zlib: { level: 9 } });
   const stream = fs.createWriteStream(out);
 
-  archive
-    .directory(source, false)
-    .on("error", err => {
-      throw new Error(err);
-    })
-    .pipe(stream);
+  return new Promise((resolve, reject) => {
+    archive
+      .directory(source, false)
+      .on("error", err => {
+        reject(err);
+      })
+      .pipe(stream);
 
-  stream.on("close", () => {
-    return;
+    stream.on("finish", () => {
+      console.log("Finished zipping");
+      resolve();
+    });
+
+    archive.finalize();
   });
-  archive.finalize();
 }
 
-async function publishToChrome(zipFile) {
+async function publishToChrome(zipFilePath) {
+  const zipFile = fs.createReadStream(zipFilePath);
   let result;
   const webStore = require("chrome-webstore-upload")({
     extensionId: process.env.CWU_EXTENSION_ID,
@@ -31,26 +37,23 @@ async function publishToChrome(zipFile) {
 
   const token = await webStore.fetchToken();
   result = await webStore.uploadExisting(zipFile, token);
+  console.log("Finished uploading:", result);
   if (result.uploadState != "SUCCESS") {
-    console.error(result);
     throw new Error(result);
   }
 
-  result = await webStore.publish(token);
-  if (result.uploadState != "SUCCESS") {
-    console.error(result);
+  result = await webStore.publish('default', token);
+  console.log("Finished publishing:", result);
+  if (result.status[0] != 'OK') {
     throw new Error(result);
   }
 }
 
 async function processDeploy() {
   await zipDirectory("./src", `./${ZIP_FILENAME}`);
-  console.log("Finished zipping.");
-  const myZipFile = fs.createReadStream(`./${ZIP_FILENAME}`);
-  await publishToChrome(myZipFile);
-  console.log("Finished deploying.");
+  await publishToChrome(`./${ZIP_FILENAME}`);
 }
 
-processDeploy().catch(reason => {
-  console.error(reason);
+processDeploy().catch(err => {
+  console.error('Failure during deployment:', err);
 });
