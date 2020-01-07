@@ -21,9 +21,13 @@ Newspapers known to NOT be covered:
 
 Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg) and [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/nn-large-images/).
 
-Functionality tested on 2019-10-29.
+Functionality tested on 2020-01-07.
 
 ## Changelog
+
+### 1.7.2
+
+Added Sogn Avis and Porten support.
 
 ### 1.7.1
 

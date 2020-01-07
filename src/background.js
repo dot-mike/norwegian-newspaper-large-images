@@ -61,6 +61,13 @@ function getLargeWHImageUrl(url) {
   return performRegExp(url, pattern, func);
 }
 
+// Sogn Avis handler
+function getLargeSaImageUrl(url) {
+  const pattern = /(\/.+\.(jpg|png))&.+$/g;
+  const func = (x, p1) => "/" + p1;
+  return performRegExp(url, pattern, func);
+}
+
 function performRegExp(value, pattern, func) {
   if (RegExp(pattern).test(value)) {
     return value.replace(pattern, func);
@@ -131,7 +138,8 @@ chrome.contextMenus.create({
     "*://*.insidetelecom.no/*",
     "*://*.veier24.no/*",
     "*://*.tek.no/*", // Aquired by VG, but using Neo
-    "*://*.medier24.no/*" // Not TUM, but using Neo
+    "*://*.medier24.no/*", // Not TUM, but using Neo
+    "*://*.porten.no/*" // Not TUM, but using Neo
   ]
 });
 
@@ -286,4 +294,12 @@ chrome.contextMenus.create({
   contexts: ["image"],
   onclick: (info, tab) => openLargeImage(info, tab, getLargeWHImageUrl),
   documentUrlPatterns: ["*://*.itavisen.no/*"]
+});
+
+// Sogn Avis | ?
+chrome.contextMenus.create({
+  title: chrome.i18n.getMessage("openLarge"),
+  contexts: ["image"],
+  onclick: (info, tab) => openLargeImage(info, tab, getLargeSaImageUrl),
+  documentUrlPatterns: ["*://*.sognavis.no/*"]
 });
