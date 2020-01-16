@@ -137,6 +137,7 @@ chrome.contextMenus.create({
     "*://*.digi.no/*",
     "*://*.insidetelecom.no/*",
     "*://*.veier24.no/*",
+    "*://*.karriere360.no/*",
     "*://*.tek.no/*", // Aquired by VG, but using Neo
     "*://*.medier24.no/*", // Not TUM, but using Neo
     "*://*.porten.no/*" // Not TUM, but using Neo

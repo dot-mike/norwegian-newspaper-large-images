@@ -25,6 +25,10 @@ Functionality tested on 2020-01-07.
 
 ## Changelog
 
+### 1.7.3
+
+Added Karriere360 support.
+
 ### 1.7.2
 
 Added Sogn Avis and Porten support.
