@@ -170,7 +170,8 @@ chrome.contextMenus.create({
     "*://*.side3.no/*",
     "*://*.mammanett.no/*",
     "*://*.vi.no/*",
-    "*://*.lommelegen.no/*"
+    "*://*.lommelegen.no/*",
+    "*://*.borsen.no/*"
   ]
 });
 
