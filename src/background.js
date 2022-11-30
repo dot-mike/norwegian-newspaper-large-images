@@ -56,13 +56,6 @@ function getLargeVgImageUrl(url) {
       "func": (x, p1) => "/images/" + p1
     },
 
-    // vg.no frontpage
-    // https://akamai.vgc.no/drfront/images/2022/11/27/c=35,35,865,814;w=527;h=495;726080.jpg?format=auto
-    ".*\:\/\/akamai.vgc.no\/drfront\/.*": {
-      "pattern": /\/images\/([a-z0-9-]+)\?[0-9a-zA-Z.&=]+$/g,
-      "func": (x, p1) => "https://images.schibsted.com/image/upload/f_auto,q_auto:eco,w_2000/" + p1
-    },
-
     // vgtv.no
     // vg nyhetsdøgnet
     ".*\:\/\/imbo.vgtv.no\/users\/vgtv\/images/.*": {
@@ -71,7 +64,6 @@ function getLargeVgImageUrl(url) {
     },
 
     // vg.no article
-    // https://akamai.vgc.no/v2/images/ac59d906-c75a-472f-9843-687e739735c4?fit=crop&format=auto&h=667&w=1000&s=9d14a8227c0fa1cf4f5e3e5a029432ec07ce64a9
     ".*\:\/\/akamai.vgc.no\/v2\/images\/.*": {
       "pattern": /.+\/images\/([a-z0-9-]+)\?[0-9a-zA-Z.&=]+$/g,
       "func": (x, p1) => "https://premium.vgc.no/vg/images/" + p1
