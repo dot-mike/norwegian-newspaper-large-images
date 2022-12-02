@@ -104,16 +104,15 @@ function getLargeTumImageUrl(url) {
 // Polar Media handler
 function getLargePmImageUrl(url) {
   // same as schibsted default handler
-  const pattern = /\/([a-f0-9-]+)\?fit.+$/g;
+  const pattern = /\/([a-f0-9-]+)\?.+$/g;
   const func = (x, p1) => "/" + p1;
   return performRegExp(url, pattern, func);
 }
 
 // Newsflow handler
+// TODO: Currently not functional
 function getLargeNfImageUrl(url) {
-  const pattern = /(bilder\/web\/).+(\/.+\.jpg)/g;
-  const func = (x, p1, p2) => p1 + "nyhetbig" + p2;
-  return performRegExp(url, pattern, func);
+  return null;
 }
 
 // Generic W/H handler (example: "-640x480.jpg")
@@ -209,6 +208,9 @@ chrome.contextMenus.create({
     "*://*.vesteraalensavis.no/*",
     "*://*.vol.no/*",
     "*://*.vaganavisa.no/*",
+    // Polaris Media Vest
+    "*://*.bomlo-nytt.no/*",
+    "*://*.sunnhordland.no/*",
   ]
 });
 
@@ -420,10 +422,6 @@ chrome.contextMenus.create({
   contexts: ["image"],
   onclick: (info, tab) => openLargeImage(info, tab, getLargeInfomakerImageUrl),
   documentUrlPatterns: [
-    // Polaris Media Vest
-    "*://*.bomlo-nytt.no/*",
-    "*://*.sunnhordland.no/*",
-    //
     "*://*.firdatidend.no/*",
     "*://*.frostingen.no/*",
     "*://*.hallingdolen.no/*",

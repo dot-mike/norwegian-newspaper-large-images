@@ -27,46 +27,56 @@ async function zipDirectory(source, out) {
 }
 
 async function publishToChrome(zipFilePath) {
-  const zipFile = fs.createReadStream(zipFilePath);
-  let result;
-  const webStore = require("chrome-webstore-upload")({
-    extensionId: process.env.CWU_EXTENSION_ID,
-    clientId: process.env.CWU_CLIENT_ID,
-    clientSecret: process.env.CWU_CLIENT_SECRET,
-    refreshToken: process.env.CWU_REFRESH_TOKEN
-  });
+  if (process.env.CWU_EXTENSION_ID) {
+    const zipFile = fs.createReadStream(zipFilePath);
+    let result;
+    const webStore = require("chrome-webstore-upload")({
+      extensionId: process.env.CWU_EXTENSION_ID,
+      clientId: process.env.CWU_CLIENT_ID,
+      clientSecret: process.env.CWU_CLIENT_SECRET,
+      refreshToken: process.env.CWU_REFRESH_TOKEN
+    });
 
-  const token = await webStore.fetchToken();
-  result = await webStore.uploadExisting(zipFile, token);
-  console.log("Finished uploading to Chrome:", result);
-  if (result.uploadState != "SUCCESS") {
-    throw new Error(result);
+    const token = await webStore.fetchToken();
+    result = await webStore.uploadExisting(zipFile, token);
+    console.log("Finished uploading to Chrome:", result);
+    if (result.uploadState != "SUCCESS") {
+      throw new Error(result);
+    }
+
+    result = await webStore.publish('default', token);
+    console.log("Finished publishing to Chrome:", result);
+    if (result.status[0] != 'OK') {
+      throw new Error(result);
+    }
   }
-
-  result = await webStore.publish('default', token);
-  console.log("Finished publishing to Chrome:", result);
-  if (result.status[0] != 'OK') {
-    throw new Error(result);
+  else {
+    console.info("Skipping Chrome publishing due to missing environment");
   }
 }
 
 async function publishToFirefox(sourcePath, artifactsPath) {
-  const webExt = require('web-ext').default;
+  if (process.env.WEB_EXT_ID) {
+    const webExt = require('web-ext').default;
 
-  webExt.cmd.sign({
-    sourceDir: sourcePath,
-    artifactsDir: artifactsPath,
-    channel: 'listed',
-    id: process.env.WEB_EXT_ID,
-    apiKey: process.env.WEB_EXT_API_KEY,
-    apiSecret: process.env.WEB_EXT_API_SECRET
-  }, {
-    shouldExitProgram: false,
-  }).then(reason => {
-    console.info("Finished publishing to Firefox:", reason);
-  }).catch(reason => {
-    console.info("Finished publishing to Firefox:", reason);
-  });
+    webExt.cmd.sign({
+      sourceDir: sourcePath,
+      artifactsDir: artifactsPath,
+      channel: 'listed',
+      id: process.env.WEB_EXT_ID,
+      apiKey: process.env.WEB_EXT_API_KEY,
+      apiSecret: process.env.WEB_EXT_API_SECRET
+    }, {
+      shouldExitProgram: false,
+    }).then(reason => {
+      console.log("Finished publishing to Firefox:", reason);
+    }).catch(reason => {
+      console.log("Finished publishing to Firefox:", reason);
+    });
+  }
+  else {
+    console.info("Skipping Firefox publishing due to missing environment");
+  }
 }
 
 async function processDeploy() {

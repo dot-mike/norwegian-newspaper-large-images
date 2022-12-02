@@ -21,9 +21,18 @@ Newspapers known to NOT be covered:
 
 Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg) and [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/nn-large-images/).
 
-Functionality tested on 2020-01-07.
+Functionality tested on 2022-12-02.
+
+## How to pack
+
+Run `node index.js` to pack and optionally release if the `.env` is set up.
 
 ## Changelog
+
+### 1.8.0
+
+Major update after long hiatus. Big thanks to [@dot-mike](https://github.com/dot-mike) for the contributions.
+Newsflow is no longer covered, as pattern is currently unknown.
 
 ### 1.7.3
 
