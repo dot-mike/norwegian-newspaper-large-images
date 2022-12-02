@@ -4,7 +4,7 @@
   "description": "Packager and deployer for Norwegian Newspaper Large Images",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,12 +18,12 @@
   },
   "homepage": "https://github.com/Ondkloss/norwegian-newspaper-large-images#readme",
   "devDependencies": {
+    "archiver": "^3.1.1",
+    "chrome-webstore-upload": "^1.0.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.6.0",
     "web-ext": "^7.4.0"
   },
   "dependencies": {
-    "archiver": "^3.1.1",
-    "chrome-webstore-upload": "^0.2.2",
-    "dotenv": "^8.2.0",
-    "eslint": "^6.6.0"
   }
 }
