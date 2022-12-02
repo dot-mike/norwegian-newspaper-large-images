@@ -104,8 +104,8 @@ function getLargeTumImageUrl(url) {
 // Polar Media handler
 function getLargePmImageUrl(url) {
   // same as schibsted default handler
-  const pattern = /\/images\/([a-z0-9-]+)\?[0-9a-zA-Z.&=]+$/g;
-  const func = (x, p1) => "/images/" + p1;
+  const pattern = /\/([a-f0-9-]+)\?fit.+$/g;
+  const func = (x, p1) => "/" + p1;
   return performRegExp(url, pattern, func);
 }
 
@@ -180,7 +180,8 @@ chrome.contextMenus.create({
     "*://*.morenytt.no/*",
     "*://*.rbnett.no/*",
     "*://*.smp.no/*",
-    "*://*.sunnmoringen.no/*", "*://*.nyss.no/*",
+    "*://*.sunnmoringen.no/*",
+    "*://*.nyss.no/*",
     "*://*.vestlandsnytt.no/*",
     "*://*.vigga.no/*",
     "*://*.vikebladet.no/*",
@@ -198,7 +199,8 @@ chrome.contextMenus.create({
     "*://*.opp.no/*",
     "*://*.opdalingen.no/*",
     // Polar Media Nord-Norge
-    "*://*.altaposten.no/*", "*://*.av-avis.no/*",
+    "*://*.altaposten.no/*",
+    "*://*.av-avis.no/*",
     "*://*.andoyposten.no/*",
     "*://*.folkebladet.no/*",
     "*://*.framtidinord.no/*",
@@ -221,7 +223,8 @@ chrome.contextMenus.create({
     "*://*.insidetelecom.no/*",
     "*://*.veier24.no/*",
     "*://*.karriere360.no/*",
-    "*://*.medier24.no/*", "*://*.m24.no/*", // Not TUM, but using Neo
+    "*://*.medier24.no/*", // Not TUM, but using Neo
+    "*://*.m24.no/*", // Not TUM, but using Neo
     "*://*.porten.no/*" // Not TUM, but using Neo
   ]
 });
