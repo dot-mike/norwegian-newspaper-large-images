@@ -16,9 +16,70 @@ function getLargeAmediaImageUrl(url) {
 
 // Schibsted handler
 function getLargeSchibstedImageUrl(url) {
-  const pattern = /\/images\/([a-z0-9-]+)\?[0-9a-zA-Z.&=]+$/g;
-  const func = (x, p1) => "/images/" + p1;
-  return performRegExp(url, pattern, func);
+  // pattern for url regex
+  const urlPattern = {
+    "default": {
+      "pattern": /\/images\/([a-z0-9-]+)\?[0-9a-zA-Z.&=]+$/g,
+      "func": (x, p1) => "/images/" + p1
+    },
+
+    ".*\:\/\/premium.vgc.no\/v2\/images\/.*": {
+      "pattern": /\/v2\/images\/([a-z0-9-]+)\?[0-9a-zA-Z.&=]+$/g,
+      "func": (x, p1) => "/images/" + p1
+    },
+
+    ".*\:\/\/shared.cdn.smp.schibsted.com\/v2\/images\/.*": {
+      "pattern": /.+\/images\/([a-z0-9-]+)\?[0-9a-zA-Z.&=]+$/g,
+      "func": (x, p1) => "https://premium.vgc.no/vgc/images/" + p1
+    },
+
+  }
+
+  // get pattern based on url
+  let pattern = urlPattern["default"];
+  for (let key in urlPattern) {
+    if (url.match(key)) {
+      pattern = urlPattern[key];
+      break;
+    }
+  }
+
+  return performRegExp(url, pattern.pattern, pattern.func);
+}
+
+// VG.no handler
+function getLargeVgImageUrl(url) {
+  // pattern for url regex
+  const urlPattern = {
+    "default": {
+      "pattern": /\/images\/([a-z0-9-]+)\?[0-9a-zA-Z.&=]+$/g,
+      "func": (x, p1) => "/images/" + p1
+    },
+
+    // vgtv.no
+    // vg nyhetsdøgnet
+    ".*\:\/\/imbo.vgtv.no\/users\/vgtv\/images/.*": {
+      "pattern": /\/images\/(.+)\.jpg\?[\[\]0-9a-zA-Z.&=]+$/g,
+      "func": (x, p1) => "/images/" + p1 + "?t[]=2048q80"
+    },
+
+    // vg.no article
+    ".*\:\/\/akamai.vgc.no\/v2\/images\/.*": {
+      "pattern": /.+\/images\/([a-z0-9-]+)\?[0-9a-zA-Z.&=]+$/g,
+      "func": (x, p1) => "https://premium.vgc.no/vg/images/" + p1
+    },
+  }
+
+  // get pattern based on url
+  let pattern = urlPattern["default"];
+  for (let key in urlPattern) {
+    if (url.match(key)) {
+      pattern = urlPattern[key];
+      break;
+    }
+  }
+
+  return performRegExp(url, pattern.pattern, pattern.func);
 }
 
 // Aller Media handler
@@ -42,14 +103,15 @@ function getLargeTumImageUrl(url) {
 
 // Polar Media handler
 function getLargePmImageUrl(url) {
-  const pattern = /\/w[0-9]+(-\w+)*\//g;
-  const func = () => "/w1980-default/";
+  // same as schibsted default handler
+  const pattern = /\/images\/([a-z0-9-]+)\?[0-9a-zA-Z.&=]+$/g;
+  const func = (x, p1) => "/images/" + p1;
   return performRegExp(url, pattern, func);
 }
 
 // Newsflow handler
 function getLargeNfImageUrl(url) {
-  const pattern = /(bilder\/nyheter\/).+(\/.+\.jpg)/g;
+  const pattern = /(bilder\/web\/).+(\/.+\.jpg)/g;
   const func = (x, p1, p2) => p1 + "nyhetbig" + p2;
   return performRegExp(url, pattern, func);
 }
@@ -65,6 +127,13 @@ function getLargeWHImageUrl(url) {
 function getLargeSaImageUrl(url) {
   const pattern = /(\/.+\.(jpg|png))&.+$/g;
   const func = (x, p1) => "/" + p1;
+  return performRegExp(url, pattern, func);
+}
+
+// Infomaker handler
+function getLargeInfomakerImageUrl(url) {
+  const pattern = /(?:http|https):\/\/(.+)\/.*[?&]uuid=([a-zA-Z0-9-]+).+/g;
+  const func = (x, p1, p2) => "https://" + p1 + "/?uuid=" + p2 + "&function=original&type=preview";
   return performRegExp(url, pattern, func);
 }
 
@@ -84,33 +153,24 @@ function openUrlInTab(url, openerTab) {
   });
 }
 
-// Polaris Media | ?
+// Polaris Media | Schibsted virtual cdn...
 chrome.contextMenus.create({
   title: chrome.i18n.getMessage("openLarge"),
   contexts: ["image"],
   onclick: (info, tab) => openLargeImage(info, tab, getLargePmImageUrl),
   documentUrlPatterns: [
-    // Polar Media Midt-Norge
-    "*://*.adressa.no/*",
-    "*://*.avisa-st.no/*",
-    "*://*.bladet.no/*",
-    "*://*.banett.no/*",
-    "*://*.fosna-folket.no/*",
-    "*://*.hitra-froya.no/*",
-    "*://*.innherred.no/*",
-    "*://*.opdalingen.no/*",
-    "*://*.tronderbladet.no/*",
-    // Polar Media Nord-Norge
-    "*://*.altaposten.no/*",
-    "*://*.andoyposten.no/*",
-    "*://*.folkebladet.no/*",
-    "*://*.framtidinord.no/*",
-    "*://*.ht.no/*",
-    "*://*.itromso.no/*",
-    "*://*.vesteraalensavis.no/*",
-    "*://*.vol.no/*",
+    // Polar Media Sør-Norge
+    "*://*.agderposten.no/*",
+    "*://*.fvn.no/*",
+    "*://*.gat.no/*",
+    "*://*.l-a.no/*",
+    "*://*.lp.no/*",
+    "*://*.lister24.no/*",
+    "*://*.varden.no/*",
+    "*://*.venneslatidende.no/*",
     // Polar Media Nordvestlandet
     "*://*.andalsnes-avis.no/*",
+    "*://*.bt.no/*",
     "*://*.driva.no/*",
     "*://*.dolen.no/*",
     "*://*.fjordabladet.no/*",
@@ -119,11 +179,34 @@ chrome.contextMenus.create({
     "*://*.fjuken.no/*",
     "*://*.morenytt.no/*",
     "*://*.rbnett.no/*",
-    "*://*.sunnmoringen.no/*",
     "*://*.smp.no/*",
+    "*://*.sunnmoringen.no/*", "*://*.nyss.no/*",
     "*://*.vestlandsnytt.no/*",
     "*://*.vigga.no/*",
-    "*://*.vikebladet.no/*"
+    "*://*.vikebladet.no/*",
+    // Polar Media Midt-Norge
+    "*://*.adressa.no/*",
+    "*://*.avisa-st.no/*",
+    "*://*.banett.no/*",
+    "*://*.bladet.no/*",
+    "*://*.fosna-folket.no/*",
+    "*://*.hitra-froya.no/*",
+    "*://*.innherred.no/*",
+    "*://*.s-n.no/*",
+    "*://*.steinkjer24.no/*",
+    "*://*.tronderbladet.no/*",
+    "*://*.opp.no/*",
+    "*://*.opdalingen.no/*",
+    // Polar Media Nord-Norge
+    "*://*.altaposten.no/*", "*://*.av-avis.no/*",
+    "*://*.andoyposten.no/*",
+    "*://*.folkebladet.no/*",
+    "*://*.framtidinord.no/*",
+    "*://*.ht.no/*",
+    "*://*.itromso.no/*",
+    "*://*.vesteraalensavis.no/*",
+    "*://*.vol.no/*",
+    "*://*.vaganavisa.no/*",
   ]
 });
 
@@ -138,8 +221,7 @@ chrome.contextMenus.create({
     "*://*.insidetelecom.no/*",
     "*://*.veier24.no/*",
     "*://*.karriere360.no/*",
-    "*://*.tek.no/*", // Aquired by VG, but using Neo
-    "*://*.medier24.no/*", // Not TUM, but using Neo
+    "*://*.medier24.no/*", "*://*.m24.no/*", // Not TUM, but using Neo
     "*://*.porten.no/*" // Not TUM, but using Neo
   ]
 });
@@ -171,7 +253,8 @@ chrome.contextMenus.create({
     "*://*.mammanett.no/*",
     "*://*.vi.no/*",
     "*://*.lommelegen.no/*",
-    "*://*.borsen.no/*"
+    "*://*.borsen.no/*",
+    "*://*.vp.no/*",
   ]
 });
 
@@ -181,11 +264,19 @@ chrome.contextMenus.create({
   contexts: ["image"],
   onclick: (info, tab) => openLargeImage(info, tab, getLargeSchibstedImageUrl),
   documentUrlPatterns: [
+    "*://*.aftenbladet.no/*",
     "*://*.aftenposten.no/*",
-    "*://*.bt.no/*",
-    "*://*.fvn.no/*",
-    "*://*.aftenbladet.no/*"
+    "*://*.mn24.no/*",
+    "*://*.tek.no/*", // Aquired by VG, but using Neo
   ]
+});
+
+// vg.no
+chrome.contextMenus.create({
+  title: chrome.i18n.getMessage("openLarge"),
+  contexts: ["image"],
+  onclick: (info, tab) => openLargeImage(info, tab, getLargeVgImageUrl),
+  documentUrlPatterns: ["*://*.vg.no/*"]
 });
 
 // Amedia | ?
@@ -194,20 +285,23 @@ chrome.contextMenus.create({
   contexts: ["image"],
   onclick: (info, tab) => openLargeImage(info, tab, getLargeAmediaImageUrl),
   documentUrlPatterns: [
-    "*://*.avisenagder.no/*",
     "*://*.amta.no/*",
-    "*://*.retten.no/*",
+    "*://*.akerposten.no/*",
     "*://*.auraavis.no/*",
     "*://*.austagderblad.no/*",
+    "*://*.avisa-hordaland/*",
+    "*://*.avisenagder.no/*",
     "*://*.nordhordland.no/*",
     "*://*.an.no/*",
     "*://*.ba.no/*",
+    "*://*.blv.no/*",
     "*://*.bygdebladet.no/*",
     "*://*.bygdeposten.no/*",
     "*://*.dalane-tidende.no/*",
     "*://*.dt.no/*",
     "*://*.eikerbladet.no/*",
     "*://*.enebakkavis.no/*",
+    "*://*.eub.no/*",
     "*://*.finnmarkdagblad.no/*",
     "*://*.finnmarken.no/*",
     "*://*.finnmarksposten.no/*",
@@ -222,8 +316,10 @@ chrome.contextMenus.create({
     "*://*.ha-halden.no/*",
     "*://*.hardanger-folkeblad.no/*",
     "*://*.h-avis.no/*",
+    "*://*.h-a.no/*",
     "*://*.helg.no/*",
     "*://*.indre.no/*",
+    "*://*.inderoyningen.no/*",
     "*://*.jarlsbergavis.no/*",
     "*://*.jbl.no/*",
     "*://*.kv.no/*",
@@ -232,20 +328,23 @@ chrome.contextMenus.create({
     "*://*.lierposten.no/*",
     "*://*.lofotposten.no/*",
     "*://*.lofot-tidende.no/*",
+    "*://*.lokal-avisa.no/*",
     "*://*.oyene.no/*",
     "*://*.lyngdalsavis.no/*",
     "*://*.moss-avis.no/*",
+    "*://*.namdalsavisa.no/*",
     "*://*.nordlys.no/*",
     "*://*.noblad.no/*",
     "*://*.oa.no/*",
     "*://*.pd.no/*",
     "*://*.r-a.no/*",
     "*://*.ranablad.no/*",
-    "*://*.ringblad.no/*",
-    "*://*.ringsaker-blad.no/*",
     "*://*.rablad.no/*",
     "*://*.rb.no/*",
+    "*://*.retten.no/*",
     "*://*.rha.no/*",
+    "*://*.ringblad.no/*",
+    "*://*.ringsaker-blad.no/*",
     "*://*.sandeavis.no/*",
     "*://*.sb.no/*",
     "*://*.sandnesposten.no/*",
@@ -253,9 +352,14 @@ chrome.contextMenus.create({
     "*://*.smaalenene.no/*",
     "*://*.solabladet.no/*",
     "*://*.solungavisa.no/*",
+    "*://*.sognavis.no/*",
+    "*://*.stangeavisa.no/*",
+    "*://*.steinkjer-avisa.no/*",
     "*://*.strandbuen.no/*",
+    "*://*.sva.no/*",
     "*://*.svelviksposten.no/*",
     "*://*.ta.no/*",
+    "*://*.t-a.no/*",
     "*://*.telen.no/*",
     "*://*.tk.no/*",
     "*://*.tvedestrandsposten.no/*",
@@ -290,18 +394,43 @@ chrome.contextMenus.create({
   ]
 });
 
-// ITAvisen | Wordpress
+// ? | Wordpress
 chrome.contextMenus.create({
   title: chrome.i18n.getMessage("openLarge"),
   contexts: ["image"],
   onclick: (info, tab) => openLargeImage(info, tab, getLargeWHImageUrl),
-  documentUrlPatterns: ["*://*.itavisen.no/*"]
+  documentUrlPatterns: [
+    "*://*.itavisen.no/*",
+    // schibsted
+    "*://*.alvdalmiv.no/*",
+    "*://*.gjoviksblad.no/*",
+    "*://*.hblad.no/*",
+    "*://*.totensblad.no/*",
+    "*://*.tynsetingen.no/*",
+
+  ]
 });
 
-// Sogn Avis | ?
+// Schibsted | infomaker
 chrome.contextMenus.create({
   title: chrome.i18n.getMessage("openLarge"),
   contexts: ["image"],
-  onclick: (info, tab) => openLargeImage(info, tab, getLargeSaImageUrl),
-  documentUrlPatterns: ["*://*.sognavis.no/*"]
+  onclick: (info, tab) => openLargeImage(info, tab, getLargeInfomakerImageUrl),
+  documentUrlPatterns: [
+    // Polaris Media Vest
+    "*://*.bomlo-nytt.no/*",
+    "*://*.sunnhordland.no/*",
+    //
+    "*://*.firdatidend.no/*",
+    "*://*.frostingen.no/*",
+    "*://*.hallingdolen.no/*",
+    "*://*.hf.no/*",
+    "*://*.osogfusa.no/*",
+    "*://*.raumnes.no/*",
+    "*://*.setesdolen.no/*",
+    "*://*.snasningen.no/*",
+    "*://*.suldalsposten.no/*",
+    "*://*.tysnesbladet.no/*",
+    "*://*.vtb.no/*",
+  ]
 });
