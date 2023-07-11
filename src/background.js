@@ -300,6 +300,7 @@ chrome.contextMenus.create({
     "*://*.an.no/*",
     "*://*.ba.no/*",
     "*://*.blv.no/*",
+    "*://*.budstikka.no/*",
     "*://*.bygdebladet.no/*",
     "*://*.bygdeposten.no/*",
     "*://*.dalane-tidende.no/*",
