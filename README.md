@@ -6,8 +6,8 @@ Adds an element in your context menu to "Open large image", when right clicking 
 
 Covered media groups or publishing platforms:
 
-- [Aller Media (Labrador)](https://www.aller.no/node/2323)
-- [Amedia](http://www.amedia.no/virksomheten/vare-mediehus/)
+- [Aller Media (Labrador)](https://www.aller.no/vare-merkevarer)
+- [Amedia](https://www.amedia.no/om-oss/personvern/mediehusene)
 - [Polaris Media](http://www.polarismedia.no/vare-selskaper/)
 - [Schibsted](https://schibsted.com/)
 - [Teknisk Ukeblad Media (Neo)](https://www.tumedia.no/)
@@ -28,6 +28,14 @@ Functionality tested on 2022-12-02.
 Run `node index.js` to pack and optionally release if the `.env` is set up.
 
 ## Changelog
+
+### 1.8.1
+
+Partial update to list of newspapers covered by various systems. Mostly Polaris Media and Amedia.
+These users contributed to the release:
+
+* [@dot-mike](https://github.com/dot-mike)
+* [@ondkloss](https://github.com/ondkloss)
 
 ### 1.8.0
 
