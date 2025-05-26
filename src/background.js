@@ -9,9 +9,27 @@ function openLargeImage(info, tab, func) {
 
 // Amedia handler
 function getLargeAmediaImageUrl(url) {
-  const pattern = /http.+\/https%3A\/\/(smooth-storage\.aptoma\.no\/users\/drf-amedia\/images\/[0-9]+\.jpg)%3FaccessToken%3D([a-z0-9]+)\?chk=[A-Z0-9]+$/g;
-  const func = (x, p1, p2) => "https://" + p1 + "?accessToken=" + p2;
-  return performRegExp(url, pattern, func);
+  const urlPattern = {
+    "default": {
+      pattern: /http.+\/https%3A\/\/(smooth-storage\.aptoma\.no\/users\/drf-amedia\/images\/[0-9]+\.jpg)%3FaccessToken%3D([a-z0-9]+)\?chk=[A-Z0-9]+$/g,
+      func: (x, p1, p2) => "https://" + p1 + "?accessToken=" + p2
+    },
+
+    ".*g\.acdn\.no\/obscura\/API\/dynamic\/.*": {
+      pattern: /\/obscura\/API\/dynamic\/([^\/]+)\/([^\/]+)\/tr_[^\/]+\/(.*?\.(?:jpg|jpeg|bin))\?chk=[A-Z0-9]+$/gi,
+      func: (x, r1, ece5, rest) => `/obscura/API/image/${r1}/${ece5}/a/${rest}`
+    }
+  };
+
+  let pattern = urlPattern["default"];
+  for (let key in urlPattern) {
+    if (url.match(key)) {
+      pattern = urlPattern[key];
+      break;
+    }
+  }
+
+  return performRegExp(url, pattern.pattern, pattern.func);
 }
 
 // Schibsted handler
@@ -296,17 +314,16 @@ chrome.contextMenus.create({
   onclick: (info, tab) => openLargeImage(info, tab, getLargeAmediaImageUrl),
   documentUrlPatterns: [
     "*://*.amta.no/*",
-    "*://*.akerposten.no/*",
+    "*://*.akersposten.no/*",
     "*://*.auraavis.no/*",
     "*://*.austagderblad.no/*",
-    "*://*.avisa-hordaland/*",
+    "*://*.avisa-hordaland.no/*",
     "*://*.avisa-valdres.no/*",
     "*://*.avisenagder.no/*",
     "*://*.nordhordland.no/*",
     "*://*.an.no/*",
     "*://*.ba.no/*",
     "*://*.blv.no/*",
-    "*://*.bodoby.no/*",
     "*://*.budstikka.no/*",
     "*://*.bygdebladet.no/*",
     "*://*.bygdeposten.no/*",
@@ -317,13 +334,13 @@ chrome.contextMenus.create({
     "*://*.eub.no/*",
     "*://*.finnmarkdagblad.no/*",
     "*://*.finnmarken.no/*",
+    "*://*.finnmarkdebatten.no/*",
     "*://*.finnmarksposten.no/*",
     "*://*.firda.no/*",
     "*://*.firdaposten.no/*",
     "*://*.f-b.no/*",
     "*://*.fremover.no/*",
     "*://*.gd.no/*",
-    "*://*.gdhytte.no/*",
     "*://*.gjengangeren.no/*",
     "*://*.gjesdalbuen.no/*",
     "*://*.gbnett.no/*",
@@ -413,7 +430,6 @@ chrome.contextMenus.create({
   documentUrlPatterns: [
     "*://*.mre.no/*",
     "*://*.svalbardposten.no/*",
-    "*://*.akersposten.no/*",
     "*://*.sageneavis.no/*",
     "*://*.midsundingen.no/*",
     "*://*.groruddalen.no/*",
