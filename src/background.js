@@ -250,7 +250,6 @@ chrome.contextMenus.create({
     "*://*.dinside.no/*",
     "*://*.klikk.no/*",
     "*://*.tv2.no/*",
-    "*://*.tvsporten.no/*",
     "*://*.seher.no/*",
     "*://*.sol.no/*",
     "*://*.kk.no/*",
@@ -260,14 +259,11 @@ chrome.contextMenus.create({
     "*://*.journalisten.no/*",
     "*://*.forskning.no/*",
     "*://*.arbeidsnytt.no/*",
-    "*://*.tungt.no/*",
-    "*://*.side2.no/*",
     "*://*.side3.no/*",
     "*://*.mammanett.no/*",
     "*://*.vi.no/*",
     "*://*.lommelegen.no/*",
     "*://*.borsen.no/*",
-    "*://*.vp.no/*",
     "*://*.porten.no/*",
   ]
 });
@@ -404,7 +400,8 @@ chrome.contextMenus.create({
     "*://*.oblad.no/*",
     "*://*.op.no/*",
     "*://*.ostlendingen.no/*",
-    "*://*.aasavis.no/*"
+    "*://*.aasavis.no/*",
+    "*://*.vp.no/*",
   ]
 });
 
