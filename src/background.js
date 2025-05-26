@@ -249,11 +249,7 @@ chrome.contextMenus.create({
   documentUrlPatterns: [
     "*://*.tu.no/*",
     "*://*.digi.no/*",
-    "*://*.insidetelecom.no/*",
     "*://*.veier24.no/*",
-    "*://*.karriere360.no/*",
-    "*://*.medier24.no/*", // Not TUM, but using Neo
-    "*://*.m24.no/*" // Not TUM, but using Neo
   ]
 });
 
@@ -283,6 +279,8 @@ chrome.contextMenus.create({
     "*://*.lommelegen.no/*",
     "*://*.borsen.no/*",
     "*://*.porten.no/*",
+    "*://*.medier24.no/*",
+    "*://*.m24.no/*"
   ]
 });
 
