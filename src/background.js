@@ -84,11 +84,12 @@ function getLargeVgImageUrl(url) {
 
 // Aller Media handler
 function getLargeAmImageUrl(url) {
-  const pattern = /\/([0-9]+)\.jpg\?[0-9a-zA-Z.&=]+$/g;
-  const func = (x, p1) =>
+  const pattern = /\/([0-9]+)\.(jpg|webp)\?[0-9a-zA-Z.&=]+$/g;
+  const func = (x, p1, p2) =>
     "/" +
     p1 +
-    ".jpg?imageId=" +
+    "." + p2 +
+    "?imageId=" +
     p1 +
     "&x=0&y=0&cropw=0&croph=0&width=-1&height=-1&compression=0";
   return performRegExp(url, pattern, func);
