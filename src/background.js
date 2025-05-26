@@ -155,6 +155,14 @@ function getLargeInfomakerImageUrl(url) {
   return performRegExp(url, pattern, func);
 }
 
+// Imgix handler
+function getLargeImgixImageUrl(url) {
+  const pattern = /(https:\/\/[^\/]+\.imgix\.net\/.+\.(jpg|jpeg|png|webp|gif))(\?.+)?$/i;
+  const func = (x, p1) => p1;
+  return performRegExp(url, pattern, func);
+}
+
+
 function performRegExp(value, pattern, func) {
   if (RegExp(pattern).test(value)) {
     return value.replace(pattern, func);
@@ -280,7 +288,8 @@ chrome.contextMenus.create({
     "*://*.borsen.no/*",
     "*://*.porten.no/*",
     "*://*.medier24.no/*",
-    "*://*.m24.no/*"
+    "*://*.m24.no/*",
+    "*://*.svalbardposten.no/*", // not AM
   ]
 });
 
@@ -417,6 +426,9 @@ chrome.contextMenus.create({
     "*://*.ostlendingen.no/*",
     "*://*.aasavis.no/*",
     "*://*.vp.no/*",
+    "*://*.sageneavis.no/*",
+    "*://*.nab.no/*",
+    "*://*.nyetroms.no/*",
   ]
 });
 
@@ -427,16 +439,10 @@ chrome.contextMenus.create({
   onclick: (info, tab) => openLargeImage(info, tab, getLargeNfImageUrl),
   documentUrlPatterns: [
     "*://*.mre.no/*",
-    "*://*.svalbardposten.no/*",
-    "*://*.sageneavis.no/*",
-    "*://*.midsundingen.no/*",
-    "*://*.groruddalen.no/*",
-    "*://*.nab.no/*",
     "*://*.idag.no/*",
     "*://*.fritanke.no/*",
-    "*://*.nye-troms.no/*",
     "*://*.sagat.no/*",
-    "*://*.nordrenett.no/*"
+    "*://*.haramsnytt.no/*"
   ]
 });
 
@@ -453,6 +459,8 @@ chrome.contextMenus.create({
     "*://*.hblad.no/*",
     "*://*.totensblad.no/*",
     "*://*.tynsetingen.no/*",
+    // Standalone
+    "*://*.midsundingen.no/*",
 
   ]
 });
@@ -476,3 +484,14 @@ chrome.contextMenus.create({
     "*://*.vtb.no/*",
   ]
 });
+
+// Imgix
+chrome.contextMenus.create({
+  title: chrome.i18n.getMessage("openLarge"),
+  contexts: ["image"],
+  onclick: (info, tab) => openLargeImage(info, tab, getLargeImgixImageUrl),
+  documentUrlPatterns: [
+    "*://groruddalen.no/*",
+  ]
+});
+
