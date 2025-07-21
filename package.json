@@ -1,28 +1,31 @@
 {
   "name": "norwegian-newspaper-large-images",
-  "version": "1.0.0",
-  "description": "Packager and deployer for Norwegian Newspaper Large Images",
+  "version": "1.9.1",
+  "description": "Browser extension for viewing large images from Norwegian newspapers",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node index.js",
+    "publish": "node index.js publish"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ondkloss/norwegian-newspaper-large-images.git"
+    "url": "git+https://github.com/dot-mike/norwegian-newspaper-large-images.git"
   },
   "private": true,
-  "author": "Halvor Holsten Strand",
+  "author": "Halvor Holsten Strand, dot-mike",
   "license": "CC-BY-SA-4.0",
   "bugs": {
-    "url": "https://github.com/Ondkloss/norwegian-newspaper-large-images/issues"
+    "url": "https://github.com/dot-mike/norwegian-newspaper-large-images/issues"
   },
-  "homepage": "https://github.com/Ondkloss/norwegian-newspaper-large-images#readme",
+  "homepage": "https://github.com/dot-mike/norwegian-newspaper-large-images#readme",
   "devDependencies": {
     "archiver": "^3.1.1",
     "chrome-webstore-upload": "^1.0.0",
     "dotenv": "^8.2.0",
     "eslint": "^6.6.0",
-    "web-ext": "^7.4.0"
+    "web-ext": "^7.4.0",
+    "fs": "^0.0.1-security"
   },
   "dependencies": {
   }

@@ -12,22 +12,24 @@ Covered media groups or publishing platforms:
 - [Schibsted](https://schibsted.com/)
 - [Teknisk Ukeblad Media (Neo)](https://www.tumedia.no/)
 - [Newsflow](https://www.newsflow.no/)
+- [VG](https://www.vg.no/)
 
 Newspapers known to NOT be covered:
 
-- VG
 - E24
 - Political newspapers
 
-Released on [Chrome Web Store](https://chrome.google.com/webstore/detail/eohpfbapbmhblpjcnjfikpmcdkkpkihg) and [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/nn-large-images/).
-
-Functionality tested on 2022-12-02.
+Functionality tested on 2025-07-01.
 
 ## How to pack
 
 Run `node index.js` to pack and optionally release if the `.env` is set up.
 
 ## Changelog
+
+### 1.9.1
+
+Many fixes and improvements.
 
 ### 1.8.1
 
