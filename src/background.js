@@ -21,7 +21,7 @@ function getLargeAmediaImageUrl(url) {
     },
 
     ".*g\.acdn\.no\/api\/reflex\/v1\/image\/resize\/.*": {
-      pattern: /\/api\/reflex\/v1\/image\/resize\/[0-9]+\/(.+)$/gi,
+      pattern: /https:\/\/g\.acdn\.no\/api\/reflex\/v1\/image\/resize\/[0-9]+\/(.+)$/gi,
       func: (x, encodedUrl) => decodeURIComponent(encodedUrl)
     },
     
