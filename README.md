@@ -27,6 +27,10 @@ Run `node index.js` to pack and optionally release if the `.env` is set up.
 
 ## Changelog
 
+### 1.9.2
+
+Amedia reflex API fix.
+
 ### 1.9.1
 
 Many fixes and improvements.
