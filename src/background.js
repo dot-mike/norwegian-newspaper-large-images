@@ -18,7 +18,13 @@ function getLargeAmediaImageUrl(url) {
     ".*g\.acdn\.no\/obscura\/API\/dynamic\/.*": {
       pattern: /\/obscura\/API\/dynamic\/([^\/]+)\/([^\/]+)\/tr_[^\/]+\/(.*?\.(?:jpg|jpeg|bin))\?chk=[A-Z0-9]+$/gi,
       func: (x, r1, ece5, rest) => `/obscura/API/image/${r1}/${ece5}/a/${rest}`
-    }
+    },
+
+    ".*g\.acdn\.no\/api\/reflex\/v1\/image\/resize\/.*": {
+      pattern: /\/api\/reflex\/v1\/image\/resize\/[0-9]+\/(.+)$/gi,
+      func: (x, encodedUrl) => decodeURIComponent(encodedUrl)
+    },
+    
   };
 
   let pattern = urlPattern["default"];
